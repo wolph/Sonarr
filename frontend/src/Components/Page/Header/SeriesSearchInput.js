@@ -9,6 +9,7 @@ import { icons } from 'Helpers/Props';
 import translate from 'Utilities/String/translate';
 import FuseWorker from './fuse.worker';
 import SeriesSearchResult from './SeriesSearchResult';
+import SeriesSearchSuggestionLink from './SeriesSearchSuggestionLink';
 import styles from './SeriesSearchInput.css';
 
 const ADD_NEW_TYPE = 'addNew';
@@ -91,9 +92,12 @@ class SeriesSearchInput extends Component {
   renderSuggestion(item, { query }) {
     if (item.type === ADD_NEW_TYPE) {
       return (
-        <div className={styles.addNewSeriesSuggestion}>
+        <SeriesSearchSuggestionLink
+          className={styles.addNewSeriesSuggestion}
+          to={`/add/new?term=${encodeURIComponent(query)}`}
+        >
           {translate('SearchForQuery', { query })}
-        </div>
+        </SeriesSearchSuggestionLink>
       );
     }
 

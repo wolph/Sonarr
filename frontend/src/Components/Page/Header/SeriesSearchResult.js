@@ -3,12 +3,14 @@ import React from 'react';
 import Label from 'Components/Label';
 import { kinds } from 'Helpers/Props';
 import SeriesPoster from 'Series/SeriesPoster';
+import SeriesSearchSuggestionLink from './SeriesSearchSuggestionLink';
 import styles from './SeriesSearchResult.css';
 
 function SeriesSearchResult(props) {
   const {
     match,
     title,
+    titleSlug,
     images,
     alternateTitles,
     tvdbId,
@@ -28,7 +30,10 @@ function SeriesSearchResult(props) {
   }
 
   return (
-    <div className={styles.result}>
+    <SeriesSearchSuggestionLink
+      className={styles.result}
+      to={`/series/${titleSlug}`}
+    >
       <SeriesPoster
         className={styles.poster}
         images={images}
@@ -95,12 +100,13 @@ function SeriesSearchResult(props) {
             null
         }
       </div>
-    </div>
+    </SeriesSearchSuggestionLink>
   );
 }
 
 SeriesSearchResult.propTypes = {
   title: PropTypes.string.isRequired,
+  titleSlug: PropTypes.string.isRequired,
   images: PropTypes.arrayOf(PropTypes.object).isRequired,
   alternateTitles: PropTypes.arrayOf(PropTypes.object).isRequired,
   tvdbId: PropTypes.number,

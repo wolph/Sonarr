@@ -91,6 +91,7 @@
 }
 
 .addNewSeriesSuggestion {
+  display: block;
   padding: 5px 3px;
   cursor: pointer;
 }
